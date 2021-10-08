@@ -1,5 +1,11 @@
 import { ParseUUIDPipe } from '@nestjs/common';
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import {
+  Args,
+  Mutation,
+  Query,
+  Resolver,
+  ResolveReference,
+} from '@nestjs/graphql';
 import { CreateTicketInput } from './dto/create-ticket.dto';
 import { Ticket } from './models/ticket.model';
 import { TicketsService } from './tickets.service';
@@ -19,6 +25,11 @@ export class TicketsResolver {
     id: string,
   ): Promise<Ticket> {
     return this.ticketsService.findOneById(id);
+  }
+
+  @ResolveReference()
+  resolveReference(reference: { __typename: string; id: string }): Ticket {
+    return this.ticketsService.findOneById(reference.id);
   }
 
   @Mutation(() => Ticket)
