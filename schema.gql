@@ -1,0 +1,33 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateTicketInput {
+  createdAt: Float!
+  description: String!
+  isDeleted: Boolean!
+  priorityId: String!
+  reportedAt: Float!
+  title: String!
+  updatedAt: Float!
+}
+
+type Mutation {
+  createTicket(createTicketInput: CreateTicketInput!): Ticket!
+}
+
+type Query {
+  ticket(id: String!): Ticket!
+  tickets: [Ticket!]!
+}
+
+type Ticket {
+  createdAt: Float!
+  description: String!
+  id: ID!
+  isDeleted: Boolean!
+  priorityId: String!
+  reportedAt: Float!
+  title: String!
+  updatedAt: Float!
+}
